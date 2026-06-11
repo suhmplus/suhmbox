@@ -1,0 +1,8 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+
+# 시크릿 — service account 키 등은 절대 커밋 금지 (GitHub Secrets/Variables 로만 주입)
+*.json
+.env

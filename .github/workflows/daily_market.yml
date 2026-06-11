@@ -1,0 +1,24 @@
+name: daily_market
+
+# 매일 09:30 KST (= 00:30 UTC) 발송. GHA cron 은 정시 보장 안 함(부하 시 지연)이나
+# "아침 한 번" 이라 무관. workflow_dispatch 로 수동 즉시 실행(첫 검증·디버깅)도 가능.
+on:
+  schedule:
+    - cron: "30 0 * * *"
+  workflow_dispatch:
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - run: python bots/daily_market/main.py
+        env:
+          # 토큰은 Secret. chat_id 는 Variable 로 등록한 가정 — Secret 에 넣었다면
+          # 아래 vars 를 secrets 로 바꾸세요.
+          TELEGRAMBOTTOKEN_SUHMPLUS: ${{ secrets.TELEGRAMBOTTOKEN_SUHMPLUS }}
+          TELEGRAMCHATID_SUHMFUTURE: ${{ vars.TELEGRAMCHATID_SUHMFUTURE }}
