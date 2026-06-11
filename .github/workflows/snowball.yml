@@ -1,10 +1,9 @@
-name: daily_market
+name: snowball
 
-# 매일 09:30 KST (= 00:30 UTC) 발송. GHA cron 은 정시 보장 안 함(부하 시 지연)이나
-# "아침 한 번" 이라 무관. workflow_dispatch 로 수동 즉시 실행(첫 검증·디버깅)도 가능.
+# 매일 13:00 KST (= 04:00 UTC). workflow_dispatch 로 수동 즉시 실행도 가능.
 on:
   schedule:
-    - cron: "30 0 * * *"
+    - cron: "0 4 * * *"
   workflow_dispatch:
 
 jobs:
@@ -16,10 +15,10 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install -r requirements.txt
-      - run: python bots/daily_market/main.py
+      - run: python bots/snowball/main.py
         env:
           PYTHONPATH: .  # shared 모듈 import (repo root)
-          # 토큰은 Secret. chat_id 는 Variable 로 등록한 가정 — Secret 에 넣었다면
-          # 아래 vars 를 secrets 로 바꾸세요.
           TELEGRAMBOTTOKEN_SUHMPLUS: ${{ secrets.TELEGRAMBOTTOKEN_SUHMPLUS }}
           TELEGRAMCHATID_SUHMFUTURE: ${{ vars.TELEGRAMCHATID_SUHMFUTURE }}
+          GOOGLESAJSON_SNOWBALLREADER: ${{ secrets.GOOGLESAJSON_SNOWBALLREADER }}
+          SPREADSHEETID_SNOWBALL: ${{ vars.SPREADSHEETID_SNOWBALL }}
