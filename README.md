@@ -6,7 +6,7 @@ GitHub Actions cron 으로 도는 작은 알림봇 모음. 봇 하나 = `bots/<n
 
 | 봇 | 주기 | 내용 | 시크릿/변수 |
 |---|---|---|---|
-| `daily_market` | 매일 09:30 KST | CNN FGI · Crypto FGI · BTC MVRV 를 텔레그램 발송 | `TELEGRAMBOTTOKEN_SUHMPLUS`(secret), `TELEGRAMCHATID_SUHMFUTURE`(var) |
+| `daily_market` | 매일 09:30 KST | CNN FGI · Crypto FGI · BTC MVRV 를 텔레그램 발송 + `market-log` 시트에 누적 기록 | `TELEGRAMBOTTOKEN_SUHMPLUS`(secret), `TELEGRAMCHATID_SUHMFUTURE`(var), `GOOGLESAJSON_SNOWBALLREADER`(secret), `SPREADSHEETID_SNOWBALL`(var) |
 
 ## 시크릿·변수
 

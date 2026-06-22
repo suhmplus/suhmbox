@@ -23,3 +23,6 @@ jobs:
           # 아래 vars 를 secrets 로 바꾸세요.
           TELEGRAMBOTTOKEN_SUHMPLUS: ${{ secrets.TELEGRAMBOTTOKEN_SUHMPLUS }}
           TELEGRAMCHATID_SUHMFUTURE: ${{ vars.TELEGRAMCHATID_SUHMFUTURE }}
+          # market-log 탭 기록 — snowball 봇과 같은 SA·시트 재사용 (편집자 권한).
+          GOOGLESAJSON_SNOWBALLREADER: ${{ secrets.GOOGLESAJSON_SNOWBALLREADER }}
+          SPREADSHEETID_SNOWBALL: ${{ vars.SPREADSHEETID_SNOWBALL }}
